@@ -30,9 +30,9 @@ if ( ! function_exists( 'afc_remove_refresh_item' ) ) :
  * @param $key
  * @return array|WP_Error
  */
-function afc_remove_item( $key ) {
+function afc_remove_item( $id ) {
 	global $afcFresherCache;
-	return $afcFresherCache->remove_item( $key );
+	return $afcFresherCache->remove_item( $id );
 }
 endif;
 
