@@ -27,7 +27,7 @@ if ( ! function_exists( 'afc_remove_refresh_item' ) ) :
 /**
  * Remove a fresher cache item.
  *
- * @param $key
+ * @param $id
  * @return array|WP_Error
  */
 function afc_remove_item( $id ) {
