@@ -84,15 +84,8 @@ class afcFresherCache {
 			if ( $button['href'] ) {
 				// Create the final URL by appending the item key and a nonce, but do it only if the user has not provided a custom url
 				if ( home_url() == $button['href'] ) {
-					$params = array(
-						'afc-key' => $button['id'],
-					);
-
-					$href = add_query_arg( $params, $button['href'] );
-					$href = wp_nonce_url( $href, 'afc-refresh' );
-					$href = esc_url( $href );
-
-					$button['href'] = $href;
+					$href = add_query_arg( 'afc-key', $button['id'], $button['href'] );
+					$button['href'] = wp_nonce_url( $href, 'afc-refresh' );
 				} else {
 					$button['href'] = esc_url( $button['href'] );
 				}
