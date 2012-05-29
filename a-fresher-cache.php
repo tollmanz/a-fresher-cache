@@ -21,6 +21,7 @@ define( 'A_FRESHER_CACHE_VERSION' , '0.1' );
 define( 'A_FRESHER_CACHE_ROOT' , dirname( __FILE__ ) );
 define( 'A_FRESHER_CACHE_FILE_PATH' , A_FRESHER_CACHE_ROOT . '/' . basename(__FILE__) );
 
+if ( ! class_exists( 'afcFresherCache' ) ) :
 /**
  * Main class for the A Fresher Cache plugin.
  *
@@ -325,3 +326,4 @@ class afcFresherCache {
 
 global $afcFresherCache;
 $afcFresherCache = new afcFresherCache();
+endif;

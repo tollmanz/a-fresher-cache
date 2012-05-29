@@ -1,5 +1,6 @@
 <?php
 
+if ( ! class_exists( 'afcFresherCacheItem' ) ) :
 /**
  * Defines a Fresher Cache Item.
  *
@@ -209,3 +210,4 @@ class afcFresherCacheItem {
 		return $this->$arg_name;
 	}
 }
+endif;
