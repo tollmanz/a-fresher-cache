@@ -209,11 +209,13 @@ class afcFresherCache {
 		if ( ! isset( $_GET['afc-key'] ) )
 			return;
 
-		$key = sanitize_key( $_GET['afc-key'] );
-
 		// Verify the nonce
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'afc-refresh' ) )
 			return;
+		
+		// sanitize the key
+		$key = sanitize_key( $_GET['afc-key'] );
+
 
 		// Make sure user has permission
 		$capability = $this->get_capability( $key );
