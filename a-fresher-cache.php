@@ -12,7 +12,7 @@
  * Make plugin 3.3+ only.
  */
 if ( ! function_exists( 'is_main_query' ) )
-	exit( __( 'WordPress 3.3 or greater is required for "A Fresher Cache" to function properly. Please uninstall', 'a-fresher-cache' ) );
+	exit( __( 'WordPress 3.3 or greater is required for "A Fresher Cache" to function properly. Please uninstall', 'a-fresher-cache', 'a-fresher-cache' ) );
 
 /**
  * Define constants.
