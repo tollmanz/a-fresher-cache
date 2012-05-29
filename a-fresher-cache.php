@@ -62,7 +62,7 @@ class afcFresherCache {
 	/**
 	 * Generates the menu items.
 	 *
-	 * The function loops through all of the registeres buttons and creates menu items out of them.
+	 * The function loops through all of the registered buttons and creates menu items out of them.
 	 * The "registered buttons" are simply wrappers for admin bar menu items. The only difference, is
 	 * that the registered buttons take two additional arguments that are used to route the links to
 	 * the correct functions with the correct parameters.
