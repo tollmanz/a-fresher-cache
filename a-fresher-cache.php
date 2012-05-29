@@ -226,11 +226,12 @@ class afcFresherCache {
 		// Verify the function
 		$function = $this->get_function( $key );
 
-		if ( false === $function )
+		if ( false === $function || !function_exists( $function ) )
 			return;
 
 		// Call the function
 		$args = $this->get_args( $key );
+		
 
 		if ( empty( $args ) )
 			call_user_func( $function );
