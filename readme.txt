@@ -45,9 +45,8 @@ all of the necessary coding that will link a callback function to a menu item. Y
 the admin bar that adds a very specific functionality. The plugin also uses the admin bar as intended and only adds a
 few extra arguments that support the functionality of this plugin.
 
-A more complete tutorial that describes the full functionality of the plugin will be posted soon on
-[tollmanz.com](http://tollmanz.com/ "Author Homepage"). In the meantime, please see the "public-functions.php" file for
-the functions that you can use with this plugin. Most of them are fairly self explanatory.
+A more complete tutorial that describes the full functionality of the plugin can be read at
+[tollmanz.com](http://tollmanz.com/a-fresher-cache-announcement/ "A Fresher Cache Announcement").
 
 == Installation ==
 
