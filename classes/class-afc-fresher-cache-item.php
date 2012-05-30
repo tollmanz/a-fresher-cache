@@ -104,14 +104,14 @@ class afcFresherCacheItem {
 	 * Handles adding defaults, sanitizes values, and setting the class variables.
 	 *
 	 * @param $args array These values are the same as the add_menu args
-	 * 		'id'        => false
-	 *		'title'     => false
-	 *		'parent'    => false
-	 *		'href'      => false
-	 *		'group'     => false
-	 *		'meta'      => array()
-	 *		'function'  => false
-	 *		'args'      => array()
+	 * 	'id'        => false
+	 *	'title'     => false
+	 *	'parent'    => false
+	 *	'href'      => false
+	 *	'group'     => false
+	 *	'meta'      => array()
+	 *	'function'  => false
+	 *	'args'      => array()
 	 *      'capability'=> 'edit_theme_options'
 	 *      'no_href'   => false
 	 * @return array

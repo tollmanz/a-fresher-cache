@@ -62,7 +62,7 @@ class afcFresherCache {
 	/**
 	 * Generates the menu items.
 	 *
-	 * The function loops through all of the registeres buttons and creates menu items out of them.
+	 * The function loops through all of the registered buttons and creates menu items out of them.
 	 * The "registered buttons" are simply wrappers for admin bar menu items. The only difference, is
 	 * that the registered buttons take two additional arguments that are used to route the links to
 	 * the correct functions with the correct parameters.
@@ -84,15 +84,8 @@ class afcFresherCache {
 			if ( $button['href'] ) {
 				// Create the final URL by appending the item key and a nonce, but do it only if the user has not provided a custom url
 				if ( home_url() == $button['href'] ) {
-					$params = array(
-						'afc-key' => $button['id'],
-					);
-
-					$href = add_query_arg( $params, $button['href'] );
-					$href = wp_nonce_url( $href, 'afc-refresh' );
-					$href = esc_url( $href );
-
-					$button['href'] = $href;
+					$href = add_query_arg( 'afc-key', $button['id'], $button['href'] );
+					$button['href'] = esc_url( wp_nonce_url( $href, 'afc-refresh' ) );
 				} else {
 					$button['href'] = esc_url( $button['href'] );
 				}
@@ -216,11 +209,13 @@ class afcFresherCache {
 		if ( ! isset( $_GET['afc-key'] ) )
 			return;
 
-		$key = sanitize_key( $_GET['afc-key'] );
-
 		// Verify the nonce
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'afc-refresh' ) )
 			return;
+		
+		// sanitize the key
+		$key = sanitize_key( $_GET['afc-key'] );
+
 
 		// Make sure user has permission
 		$capability = $this->get_capability( $key );
@@ -236,6 +231,7 @@ class afcFresherCache {
 
 		// Call the function
 		$args = $this->get_args( $key );
+		
 
 		if ( empty( $args ) )
 			call_user_func( $function );
