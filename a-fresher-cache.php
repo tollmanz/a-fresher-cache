@@ -44,7 +44,8 @@ class afcFresherCache {
 	public function __construct() {
 		// Including required files
 		require_once( A_FRESHER_CACHE_ROOT . '/classes/class-afc-fresher-cache-item.php' );
-		require_once( A_FRESHER_CACHE_ROOT . '/public-functions.php' );
+		require_once( A_FRESHER_CACHE_ROOT . '/includes/public-functions.php' );
+		require_once( A_FRESHER_CACHE_ROOT . '/includes/core-freshen-functions.php' );
 
 		// l18n support
 		load_plugin_textdomain( 'a-fresher-cache', null, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -298,6 +299,7 @@ class afcFresherCache {
 	 * @return void
 	 */
 	public function add_defaults() {
+		// Define each default menu item
 		$default_items = array(
 			array(
 				'id' => 'afc-core-items',
@@ -310,11 +312,37 @@ class afcFresherCache {
 				'function' => 'flush_rewrite_rules',
 				'parent' => 'afc-core-items',
 				'args' => array( true )
+			),
+			array(
+				'id' => 'afc-delete-all-transients',
+				'title' => __( 'Transients', 'a-fresher-cache' ),
+				'function' => 'afc_delete_all_transients',
+				'parent' => 'afc-core-items'
+			),
+			array(
+				'id' => 'afc-update-term-cache-all',
+				'title' => __( 'Term Caches', 'a-fresher-cache' ),
+				'function' => 'afc_update_term_cache_all',
+				'parent' => 'afc-core-items'
 			)
 		);
 
+		// Add the individual taxonomy cache updates
+		foreach ( get_taxonomies() as $taxonomy ) {
+			$taxonomy_object = get_taxonomy( $taxonomy );
+
+			$default_items[] = array(
+				'id' => 'afc-update-term-cache-' . $taxonomy,
+				'title' => __( $taxonomy_object->label, 'a-fresher-cache' ),
+				'function' => 'afc_update_taxonomy_term_cache',
+				'parent' => 'afc-update-term-cache-all',
+				'args' => array( $taxonomy )
+			);
+		}
+
 		$default_items = apply_filters( 'afc_default_items', $default_items );
 
+		// Register each menu
 		foreach ( $default_items as $key => $value )
 			afc_add_item( $value );
 	}
