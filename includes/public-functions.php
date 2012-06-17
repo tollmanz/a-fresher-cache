@@ -47,3 +47,24 @@ function afc_remove_default_actions() {
 	remove_action( 'init', array( $afcFresherCache, 'add_defaults' ) );
 }
 endif;
+
+if ( ! function_exists( 'afc_delete_transient_group' ) ) :
+/**
+ * Remove all transients that start with $starting_with.
+ *
+ * The intent of this function is to remove all transients that are grouped with
+ * the same prefix. This can easily target all transients related to a plugin/theme
+ * with a prefix or grouped function with a specific prefix.
+ *
+ * @param   string  $starting_with  Value to append to "_transient_".
+ * @return  void
+ */
+function afc_delete_transient_group ( $starting_with ) {
+	if ( ! isset( $starting_with ) ) {
+		_doing_it_wrong( 'afc_delete_transient_group()', __( 'You must use a string as the first argument in this function', 'a-fresher-cache' ), '0.2' );
+		return;
+	}
+
+	afc_delete_all_transients( $starting_with );
+}
+endif;

@@ -41,20 +41,26 @@ if ( ! function_exists( 'afc_delete_all_transients' ) ) :
 /**
  * Removes all single site transients from the database.
  *
- * @return void
+ * @author  Thanks to Rarst for inspiring this function
+ * @link    http://wordpress.stackexchange.com/questions/6602/are-transients-garbage-collected
+ *
+ * @param   string  $starting_with  Value to append to "_transient_".
+ * @return  void
  */
-function afc_delete_all_transients() {
+function afc_delete_all_transients( $starting_with = '' ) {
 	global $wpdb, $_wp_using_ext_object_cache;
 
 	if ( $_wp_using_ext_object_cache )
 		return;
 
 	// Get the transient timeout keys
-	$timeout_name = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout%'" );
+	$key = '_transient_' . $starting_with;
+	$statement = $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s", like_escape( $key ) . '%' );
+	$timeout_name = $wpdb->get_col( $statement );
 
 	// Cycle through transient timeout keys, convert to transient keys and delete
 	foreach ( $timeout_name as $transient ) {
-		$key = str_replace( '_transient_timeout_', '', $transient );
+		$key = str_replace( '_transient_', '', $transient );
 		delete_transient( $key );
 	}
 }
