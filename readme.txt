@@ -86,5 +86,8 @@ tweets from two different Twitter accounts.
 
 == Upgrade Notice ==
 
+= 0.1.1 =
+* More public functions
+
 = 0.1 =
 * Initial release
