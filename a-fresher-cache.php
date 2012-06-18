@@ -40,6 +40,8 @@ class afcFresherCache {
 
 	/**
 	 * Registers the main actions.
+	 *
+	 * @return  void
 	 */
 	public function __construct() {
 		// Including required files
@@ -68,13 +70,13 @@ class afcFresherCache {
 	 * that the registered buttons take two additional arguments that are used to route the links to
 	 * the correct functions with the correct parameters.
 	 *
-	 * @return bool
+	 * @return  void
 	 */
 	public function do_items() {
 		$items = $this->get_items();
 
 		if ( empty( $items ) )
-			return false;
+			return;
 
 		// Add the parent item
 		$this->_add_main_menu();
@@ -111,6 +113,8 @@ class afcFresherCache {
 	 * title and parent attributes are filterable, but be careful about using these filters as they
 	 * may cause unexpected changes for users not expecting to see the item labelled differently or
 	 * in a different location.
+	 *
+	 * @return  void
 	 */
 	private function _add_main_menu() {
 		global $wp_admin_bar;
@@ -125,8 +129,8 @@ class afcFresherCache {
 	/**
 	 * Registers a new cache refresh item.
 	 *
-	 * @param $args
-	 * @return array|bool
+	 * @param   array   $args   Arguments to setup the item.
+	 * @return  array|bool      Array of items on success, false on failure.
 	 */
 	public function add_item( $args ) {
 		if ( ! isset( $args['id'] ) )
@@ -143,8 +147,8 @@ class afcFresherCache {
 	/**
 	 * Gets an a single registered item by key.
 	 *
-	 * @param $key
-	 * @return array|bool
+	 * @param   string  $key    ID of the item to retrieve.
+	 * @return  array|bool      Array representing item on success, false on failure.
 	 */
 	public function retrieve_item( $key ) {
 		$fresher_cache_items = $this->get_items();
@@ -158,8 +162,8 @@ class afcFresherCache {
 	/**
 	 * Remove a registered fresher cache item.
 	 *
-	 * @param $key
-	 * @return array|WP_Error
+	 * @param   string  $key    ID of the item to retrieve.
+	 * @return  array|WP_Error  Array of items on success, false on failure.
 	 */
 	public function remove_item( $key ) {
 		$fresher_cache_items = $this->get_items();
@@ -176,8 +180,8 @@ class afcFresherCache {
 	/**
 	 * Sets all items.
 	 *
-	 * @param $buttons
-	 * @return void
+	 * @param   array   $buttons    Array of items.
+	 * @return  void
 	 */
 	public function set_items( $buttons ) {
 		$this->_fresher_cache_items = $buttons;
@@ -186,7 +190,7 @@ class afcFresherCache {
 	/**
 	 * Gets all items.
 	 *
-	 * @return array
+	 * @return  array   All items.
 	 */
 	public function get_items() {
 		return $this->_fresher_cache_items;
@@ -246,8 +250,8 @@ class afcFresherCache {
 	/**
 	 * Get the function associated with the item id.
 	 *
-	 * @param $id
-	 * @return bool|string
+	 * @param   string  $id Gets a function associated with an item's ID.
+	 * @return  bool|string Function name on success, false on failure.
 	 */
 	public function get_function( $id ) {
 		return $this->_get_value( $id, 'function' );
@@ -256,8 +260,8 @@ class afcFresherCache {
 	/**
 	 * Get the args associated with the item id.
 	 *
-	 * @param $id
-	 * @return bool|string
+	 * @param   string  $id ID of the item to retrieve.
+	 * @return  bool|string Array representing item on success, false on failure.
 	 */
 	public function get_args( $id ) {
 		return $this->_get_value( $id, 'args' );
@@ -266,8 +270,8 @@ class afcFresherCache {
 	/**
 	 * Get the capability associated with the item id.
 	 *
-	 * @param $id
-	 * @return bool|string
+	 * @param   string  $id ID of the item to retrieve.
+	 * @return  bool|string Capability on success, false on failure.
 	 */
 	public function get_capability( $id ) {
 		return $this->_get_value( $id, 'capability' );
@@ -280,9 +284,9 @@ class afcFresherCache {
 	 * array key is returned. If the given key/id is not found, false is returned. This is an important
 	 * security feature in that it allows only registered functions and values are executed.
 	 *
-	 * @param $id
-	 * @param $value
-	 * @return bool|string
+	 * @param   string      $id     ID of the item to retrieve.
+	 * @param   mixed       $value  Associated value
+	 * @return  bool|string         Value on success, false on failure.
 	 */
 	private function _get_value( $id, $value ) {
 		$buttons = $this->get_items();
@@ -312,12 +316,6 @@ class afcFresherCache {
 				'function' => 'flush_rewrite_rules',
 				'parent' => 'afc-core-items',
 				'args' => array( true )
-			),
-			array(
-				'id' => 'afc-delete-all-transients',
-				'title' => __( 'Transients', 'a-fresher-cache' ),
-				'function' => 'afc_delete_all_transients',
-				'parent' => 'afc-core-items'
 			),
 			array(
 				'id' => 'afc-update-term-cache-all',

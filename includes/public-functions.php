@@ -4,7 +4,7 @@ if ( ! function_exists( 'afc_add_refresh_item' ) ) :
 /**
  * Wrapper function to add an item to the refresher menu.
  *
- * @param $args array These values are the same as the add_menu args
+ * @param   array   $args   These values are the same as the add_menu args
  * 		'id'        => false
  *		'title'     => false
  *		'parent'    => false
@@ -15,7 +15,7 @@ if ( ! function_exists( 'afc_add_refresh_item' ) ) :
  *		'args'      => array()
  *      'capability'=> 'edit_theme_options'
  *      'no_href'   => false
- * @return afcFresherCacheItem
+ * @return afcFresherCacheItem  Returns the newly created instance.
  */
 function afc_add_item( $args ) {
 	$refresh_item = new afcFresherCacheItem( $args );
@@ -27,8 +27,8 @@ if ( ! function_exists( 'afc_remove_refresh_item' ) ) :
 /**
  * Remove a fresher cache item.
  *
- * @param $id
- * @return array|WP_Error
+ * @param   string      $id ID of the item to remove.
+ * @return  array|WP_Error  True on success, WP_Error on failure.
  */
 function afc_remove_item( $id ) {
 	global $afcFresherCache;
@@ -40,7 +40,7 @@ if ( ! function_exists( 'afc_remove_default_actions' ) ) :
 /**
  * Removes all of the menu items automatically added by the plugin.
  *
- * @return void
+ * @return  void
  */
 function afc_remove_default_actions() {
 	global $afcFresherCache;
@@ -60,10 +60,8 @@ if ( ! function_exists( 'afc_delete_transient_group' ) ) :
  * @return  void
  */
 function afc_delete_transient_group ( $starting_with ) {
-	if ( ! isset( $starting_with ) ) {
-		_doing_it_wrong( 'afc_delete_transient_group()', __( 'You must use a string as the first argument in this function', 'a-fresher-cache' ), '0.2' );
+	if ( ! isset( $starting_with ) )
 		return;
-	}
 
 	afc_delete_all_transients( $starting_with );
 }

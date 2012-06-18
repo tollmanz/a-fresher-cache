@@ -88,7 +88,7 @@ class afcFresherCacheItem {
 	/**
 	 * Constructs the class.
 	 *
-	 * @param array $args
+	 * @param   array   $args   See "parse_args" for accepted args.
 	 */
 	public function __construct( $args = array() ) {
 		if ( ! is_array( $args ) )
@@ -103,7 +103,7 @@ class afcFresherCacheItem {
 	 *
 	 * Handles adding defaults, sanitizes values, and setting the class variables.
 	 *
-	 * @param $args array These values are the same as the add_menu args
+	 * @param   array   $args   These values are the same as the add_menu args
 	 * 	'id'        => false
 	 *	'title'     => false
 	 *	'parent'    => false
@@ -114,7 +114,7 @@ class afcFresherCacheItem {
 	 *	'args'      => array()
 	 *      'capability'=> 'edit_theme_options'
 	 *      'no_href'   => false
-	 * @return array
+	 * @return  array           The validated/sanitized values.
 	 */
 	public function parse_args( $args ) {
 		$args = wp_parse_args( $args, array(
@@ -160,8 +160,8 @@ class afcFresherCacheItem {
 	/**
 	 * Add an item to the main global variable to hold the refresh item.
 	 *
-	 * @param $args
-	 * @return bool
+	 * @param   array   $args   Arrays of args defined in "parse_args".
+	 * @return  bool            True on success, false on failure.
 	 */
 	public function add_refresh_item( $args ) {
 		if ( ! is_admin_bar_showing() )
@@ -186,9 +186,9 @@ class afcFresherCacheItem {
 	/**
 	 * Set a class variable.
 	 *
-	 * @param $arg_name
-	 * @param $value
-	 * @return void
+	 * @param   string  $arg_name   Name of the class variable to set.
+	 * @param   mixed   $value      Value to set the variable to.
+	 * @return  void
 	 */
 	public function set_arg( $arg_name, $value ) {
 		if ( ! isset( $this->$arg_name ) )
@@ -200,8 +200,8 @@ class afcFresherCacheItem {
 	/**
 	 * Get a class variable.
 	 *
-	 * @param $arg_name
-	 * @return array|WP_Error
+	 * @param   string  $arg_name   Name of variable to get.
+	 * @return  mixed|WP_Error      Value on success, WP_Error on failure.
 	 */
 	public function get_arg( $arg_name ) {
 		if ( ! isset( $this->$arg_name ) )
