@@ -4,7 +4,7 @@
 	Plugin URI: http://github.com/tollmanz/a-fresher-cache
 	Description: Get a fresher cache with a dash of "A Fresher Cache" for absolutely no cash.
 	Author: tollmanz
-	Version: 0.1
+	Version: 0.1.2
 	Author URI: http://tollmanz.com/
 */
 

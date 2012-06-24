@@ -4,7 +4,7 @@ Donate link: http://tollmanz.com/
 Tags: cache, admin bar
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,10 @@ tweets from two different Twitter accounts.
 
 == Changelog ==
 
+= 0.1.2 =
+* Class methods are now valid callbacks
+* Transients can be removed even if using an object cache
+
 = 0.1.1 =
 * Functions for removing transients
 * Documentation updates
@@ -85,6 +89,9 @@ tweets from two different Twitter accounts.
 * Initial release
 
 == Upgrade Notice ==
+
+= 0.1.2 =
+* Class methods are now valid callbacks
 
 = 0.1.1 =
 * More public functions
