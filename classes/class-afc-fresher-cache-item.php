@@ -145,7 +145,7 @@ class afcFresherCacheItem {
 			'parent' => false !== $args['parent'] ? sanitize_key( $args['parent'] ) : 'afc-main-menu-item',
 			'href' => $args['href'],
 			'group' => (bool) $args['group'],
-			'function' => false !== $args['function'] && function_exists( $args['function'] ) ? $args['function'] : false,
+			'function' => false !== $args['function'] && is_callable( $args['function'] ) ? $args['function'] : false,
 			'args' => $args['args'],
 			'capability' => sanitize_key( $args['capability'] )
 		);

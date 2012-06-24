@@ -237,11 +237,7 @@ class afcFresherCache {
 		// Call the function
 		$args = $this->get_args( $key );
 		
-
-		if ( empty( $args ) )
-			call_user_func( $function );
-		else
-			call_user_func_array( $function, $args );
+		call_user_func_array( $function, $args );
 
 		wp_safe_redirect( wp_get_referer() );
 		die();

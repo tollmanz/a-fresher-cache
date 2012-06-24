@@ -48,10 +48,7 @@ if ( ! function_exists( 'afc_delete_all_transients' ) ) :
  * @return  void
  */
 function afc_delete_all_transients( $starting_with = '' ) {
-	global $wpdb, $_wp_using_ext_object_cache;
-
-	if ( $_wp_using_ext_object_cache )
-		return;
+	global $wpdb;
 
 	// Get the transient timeout keys
 	$key = '_transient_' . $starting_with;
