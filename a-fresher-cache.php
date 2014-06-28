@@ -318,7 +318,34 @@ class afcFresherCache {
 				'title' => __( 'Term Caches', 'a-fresher-cache' ),
 				'function' => 'afc_update_term_cache_all',
 				'parent' => 'afc-core-items'
-			)
+			),
+			array(
+				'id'      => 'afc-update-items',
+				'title'   => __( 'Updates', 'a-fresher-cache' ),
+				'parent'  => 'afc-core-items',
+				'no_href' => true,
+			),
+			array(
+				'id'         => 'afc-flush-core-updates',
+				'parent'     => 'afc-update-items',
+				'title'      => __( 'Core', 'a-fresher-cache' ),
+				'function'   => 'delete_site_transient',
+				'args'       => array( 'update_core' ),
+			),
+			array(
+				'id'         => 'afc-flush-plugin-updates',
+				'parent'     => 'afc-update-items',
+				'title'      => __( 'Plugins', 'a-fresher-cache' ),
+				'function'   => 'delete_site_transient',
+				'args'       => array( 'update_plugins' ),
+			),
+			array(
+				'id'         => 'afc-flush-theme-updates',
+				'parent'     => 'afc-update-items',
+				'title'      => __( 'Themes', 'a-fresher-cache' ),
+				'function'   => 'delete_site_transient',
+				'args'       => array( 'update_themes' ),
+			),
 		);
 
 		// Add the individual taxonomy cache updates
